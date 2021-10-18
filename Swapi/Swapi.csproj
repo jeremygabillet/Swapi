@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\Implementations\BaseApi.cs" />
+    <Compile Include="API\Implementations\FilmService.cs" />
     <Compile Include="API\Interfaces\IApiService.cs" />
     <Compile Include="API\Interfaces\IFilmService.cs" />
     <Compile Include="API\Interfaces\IPersonService.cs" />

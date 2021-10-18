@@ -20,6 +20,7 @@ namespace Swapi
         {
             ServiceCollection.AddService<IPlanetService, PlanetService>();
             ServiceCollection.AddService<IPersonService, PersonService>();
+            ServiceCollection.AddService<IFilmService, FilmService>();
         }
 
         public static async void AfficherInformations()
@@ -28,6 +29,8 @@ namespace Swapi
             await AfficherInformationsPlanete(2);
             await AfficherInfoPersonne(1);
             await AfficherInfoPersonne(9);
+            await AfficherInfoFilm(1);
+            await AfficherInfoFilm(5);
 
             // afficher des informations sur les films, les personnes, les vaisseaux, les espèces, les véhicules etc...
         }
@@ -47,7 +50,15 @@ namespace Swapi
             string json = await service.CallApi(idPersonne);
             Person person = JsonConvert.DeserializeObject<Person>(json);
 
-            Console.WriteLine(person.Name + " : " + person.Homeworld);
+            Console.WriteLine(person.Name + " : " + person.BirthYear);
+        }
+        public static async Task AfficherInfoFilm(int idFilm)
+        {
+            IFilmService service = ServiceCollection.GetService<IFilmService>();
+            string json = await service.CallApi(idFilm);
+            Film film = JsonConvert.DeserializeObject<Film>(json);
+
+            Console.WriteLine(film.Title + " : " + film.ReleaseDate);
         }
     }
 }
